@@ -14,11 +14,9 @@ print("Random list 2:", random_list_2)
 list_of_random_lists = []
 i = 0
 
-while i < 10:
-    random_number = randint(0, 10)
-    if random_number in random_list_1 and random_number not in list_of_random_lists:
-        list_of_random_lists.append(int(random_number))
-    elif random_number in random_list_2 and random_number not in list_of_random_lists:
-        list_of_random_lists.append(random_number)
+while i < len(random_list_1):
+    if random_list_1[i] in random_list_2 and random_list_1[i] not in list_of_random_lists:
+        list_of_random_lists.append(random_list_1[i])
     i += 1
 print("Common integers: ", list_of_random_lists)
+
