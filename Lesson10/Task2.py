@@ -13,14 +13,13 @@ def math_operation():
             else:
                 break
         except ValueError:
-                print('Invalid input. Please enter a number.')
+            print('Invalid input. Please enter a number.')
 
     try:
         result = a ** 2 / b
         return result
-    except ZeroDivisionError:
-        print('Division on zero!')
-        return None
+    finally:
+        print('')
 
 
 res = math_operation()
