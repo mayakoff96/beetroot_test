@@ -122,59 +122,52 @@ def update_contact(phone_number):
 
 
 def main():
-    options = {
-        "1": add_contact,
-        "2": lambda: search_contacts(search_by_name),
-        "3": lambda: search_contacts(search_by_surname),
-        "4": lambda: search_contacts(search_by_full_name),
-        "5": lambda: search_contacts(search_by_phone_number),
-        "6": lambda: search_contacts(search_by_location),
-        "7": lambda: search_contacts(delete_contact),
-        "8": lambda: search_contacts(update_contact),
-    }
-
     while True:
-        print_options()
+        print("1. Добавити новий контакт")
+        print("2. Пошук за ім'ям")
+        print("3. Пошук за фамілією")
+        print("4. Пошук за повним ім'ям")
+        print("5. Пошук за номером телефону")
+        print("6. Пошук за містом або країною")
+        print("7. Видалити контакт за номером телефону")
+        print("8. Оновити контакт за номером телефону")
+        print("9. Вихід")
+
         choice = input("Виберіть опцію: ")
 
-        if choice == "9":
+        if choice == "1":
+            add_contact()
+        elif choice == "2":
+            name = input("Введіть ім'я для пошуку: ")
+            found_contacts = search_by_name(name)
+            print_found_contacts(found_contacts)
+        elif choice == "3":
+            surname = input("Введіть фамілію для пошуку: ")
+            found_contacts = search_by_surname(surname)
+            print_found_contacts(found_contacts)
+        elif choice == "4":
+            full_name = input("Введіть повне ім'я для пошуку: ")
+            found_contacts = search_by_full_name(full_name)
+            print_found_contacts(found_contacts)
+        elif choice == "5":
+            phone_number = input("Введіть номер телефону для пошуку: ")
+            found_contacts = search_by_phone_number(phone_number)
+            print_found_contacts(found_contacts)
+        elif choice == "6":
+            location = input("Введіть місто або країну для пошуку: ")
+            found_contacts = search_by_location(location)
+            print_found_contacts(found_contacts)
+        elif choice == "7":
+            phone_number = input("Введіть номер телефону для видалення контакту: ")
+            delete_contact(phone_number)
+        elif choice == "8":
+            phone_number = input("Введіть номер телефону для оновлення: ")
+            update_contact(phone_number)
+        elif choice == "9":
             print("До побачення!")
             break
-
-        action = options.get(choice)
-        if action:
-            action()
         else:
             print("Невірний вибір. Спробуйте ще раз.")
-
-
-def print_options():
-    print("1. Добавити новий контакт")
-    print("2. Пошук за ім'ям")
-    print("3. Пошук за фамілією")
-    print("4. Пошук за повним ім'ям")
-    print("5. Пошук за номером телефону")
-    print("6. Пошук за містом або країною")
-    print("7. Видалити контакт за номером телефону")
-    print("8. Оновити контакт за номером телефону")
-    print("9. Вихід")
-
-
-def search_contacts(search_func):
-    search_term = input(f"Введіть {get_search_term_description(search_func)} для пошуку: ")
-    found_contacts = search_func(search_term)
-    print_found_contacts(found_contacts)
-
-
-def get_search_term_description(search_func):
-    descriptions = {
-        search_by_name: "ім'я",
-        search_by_surname: "фамілію",
-        search_by_full_name: "повне ім'я",
-        search_by_phone_number: "номер телефону",
-        search_by_location: "місто або країну",
-    }
-    return descriptions.get(search_func, "")
 
 
 def print_found_contacts(contacts):
