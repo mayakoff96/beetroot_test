@@ -26,8 +26,8 @@ class Fraction:
         if isinstance(other, Fraction):
             if other.numerator == 0:
                 raise ZeroDivisionError("Division by 0!")
-            numerator = self.numerator * other.denominator
-            denominator = self.denominator * other.numerator
+            numerator = self.numerator * other.numerator
+            denominator = self.denominator * other.denominator
             return Fraction(numerator, denominator)
         else:
             raise TypeError("Unsupported operation type for /: 'Fraction' and '{}'".format(type(other).__name__))
