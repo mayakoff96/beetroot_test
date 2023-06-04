@@ -5,28 +5,30 @@ class EmailValidation:
 
     def __init__(self, email):
         self.email = email
-        self.validation(self.email)
+        self.validation()
 
-    def validation(self, email):
-        pattern = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$" # регулярний вираз для перевірки адреси
-        if not re.match(pattern, email): # якщо email  не відповідає регулярному виразу
+    def validation(self):
+        pattern = r"^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$" # регулярний вираз для перевірки адреси
+        if not re.match(pattern, self.email): # якщо email  не відповідає регулярному виразу
             raise ValueError('Invalid email address') # викликаємо помилку
 
     def __str__(self):
-        return f'{self.email}'
+        return self.email
 
 # mail = EmailValidation('asds1859@google.com')
 # print(mail)
 
 
 try:
-    mail1 = EmailValidation('email.valid1087@google.com')
+    mail1 = "'email.valid1087@google.com'"
+    mail1 = EmailValidation(mail1)
     print(f'Email {mail1} is valid.')
 except ValueError:
-    print(f'Email is invalid.')
+    print(f'Email {mail1} is invalid.')
 
 try:
-    mail2 = EmailValidation('invalid_email')
-    print(f'Email {mail2}is valid.')
+    mail2 = "'invalid_email'"
+    mail2 = EmailValidation(mail2)
+    print(f'Email {mail2} is valid.')
 except ValueError:
-    print(f'Email is invalid.')
+    print(f'Email {mail2} is invalid.')
